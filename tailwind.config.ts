@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
 	darkMode: ["class"],
@@ -54,20 +55,21 @@ export default {
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+                  	// Use general foreground for text on sidebar, or define a specific one if needed
+					foreground: 'hsl(var(--foreground))' 
+				},
+        		// Explicit colors from PRD not fitting the HSL var scheme directly
+        		accentOrange: '#F9B115',
 			},
 			borderRadius: {
+        		// lg, md, sm will use the --radius variable defined in index.css (0.375rem for rounded-md)
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+      		fontFamily: {
+        		sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+      		},
 			keyframes: {
 				'accordion-down': {
 					from: {
