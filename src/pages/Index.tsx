@@ -1,14 +1,39 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React from 'react';
+import MainAppLayout from '../components/layout/MainAppLayout';
+import FunnelAnalytics from '../components/Dashboard/FunnelAnalytics';
+import SourcesChart from '../components/Dashboard/SourcesChart';
+import LeadsTrackingChart from '../components/Dashboard/LeadsTrackingChart';
+import LossReasonsList from '../components/Dashboard/LossReasonsList';
+import OtherStats from '../components/Dashboard/OtherStats';
 
-const Index = () => {
+/**
+ * LeadsDashboardPage is the main page for displaying leads overview.
+ * It assembles various dashboard components (charts, stats cards) within the MainAppLayout.
+ */
+const LeadsDashboardPage: React.FC = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <MainAppLayout title="Leads Dashboard">
+      {/* 
+        This container div implements the layout specified in Project Requirements > Layout Requirements > mainContent.container:
+        "gap-6 grid grid-cols-2"
+        Individual components are responsible for their content and internal layout.
+        LeadsTrackingChart includes `col-span-2` in its own styling, so it will span both columns of this grid.
+      */}
+      <div className="grid grid-cols-2 gap-6">
+        {/* Row 1: Funnel Analytics and Sources Chart */}
+        <FunnelAnalytics />
+        <SourcesChart />
+
+        {/* Row 2: Leads Tracking Chart (spans both columns) */}
+        {/* The LeadsTrackingChart component is already styled with `col-span-2` */}
+        <LeadsTrackingChart />
+
+        {/* Row 3: Loss Reasons List and Other Stats */}
+        <LossReasonsList />
+        <OtherStats />
       </div>
-    </div>
+    </MainAppLayout>
   );
 };
 
-export default Index;
+export default LeadsDashboardPage;
